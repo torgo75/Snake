@@ -64,9 +64,13 @@ class snake(object):
     #def add(self):
         #adding an Item at the end of the list
 
+    def snakepaint (self,SCREEN,color,itemx,itemy):
+        self.SNAKERECT=pygame.Rect(itemx,itemy,BOX,BOX)
+        pygame.draw.rect(SCREEN,color,self.SNAKERECT)
+
     def snakemove(self,SCREEN,direction=(K_RIGHT)):
 
-        snakepaint(BLACK,self.snake[len(self.snake)][0],self.snake[len(self.snake)][1])
+        self.snakepaint(SCREEN,BLACK,self.snake[len(self.snake)-1][0],self.snake[len(self.snake)-1][1])
         if direction in (K_RIGHT, K_d):
             self.snake[0][0] = self.snake[0][0] + BOX
         elif direction in (K_LEFT, K_a):
@@ -76,11 +80,8 @@ class snake(object):
         elif direction in (K_DOWN, K_s):
             self.snake[0][1] = self.snake[0][1] + BOX
 
-        self.snakepaint(LIGHTGREEN,self.snake[0][0],self.snake[0][1])
+        self.snakepaint(SCREEN,LIGHTGREEN,self.snake[0][0],self.snake[0][1])
 
-    def snakepaint (self,color,itemx,itemy):
-        self.SNAKERECT=pygame.Rect(itemx,itemy,BOX,BOX)
-        pygame.draw.rect(SCREEN,color,self.SNAKERECT)
 
 
 #class containing the field
